@@ -1,12 +1,6 @@
-/*******************************************************************
-* Java Code: LinearQueueMain.java
-* Date: 05-Jan-2021
-* Course: Sep 2020 Batch at Sunbeam Infotech
-* Module: Data Structures and Algorithms
-* Author: Nilesh Ghule <nilesh@sunbeaminfo.com>
-*******************************************************************/
 
-package sunbeam;
+
+package sumya;
 
 import java.util.Scanner;
 
@@ -19,6 +13,13 @@ class LinearQueue {
 		rear = -1;
 		front = -1;
 	}
+	// use this display method to display the elements and add it to switch case and look for peek method
+	  public void display() {
+        System.out.println("The elements are: ");
+        for (int i = front + 1; i <= rear; i++) {
+            System.out.println("\t" + arr[i]);
+        }
+    }
 	public boolean isFull() {
 		return rear == arr.length - 1;
 	}
