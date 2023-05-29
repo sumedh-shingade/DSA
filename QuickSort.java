@@ -1,58 +1,69 @@
-package sort;
+package sumya;
+import java.util.Arrays;
 
-public class QuickSort {
-
-	public static void main(String[] args) {
-
-		int[] data = { 2, 6, 3, 34, 11, 83, 7, 1, 5 };
-
-		System.out.println("\nArray Before Sort :");
-		printData(data);
-
-		QuickSort(data, 0, data.length - 1);
-
-		System.out.println("\nArray After Sort :");
-		printData(data);
+public class QuickSort 
+	{
+	
+	public static void swap(int[] arr,int x,int y) {
+		
+		int temp=arr[x];
+		arr[x]=arr[y];
+		arr[y]=temp;
 	}
-
-	public static int partition(int[] data, int l, int h) {
-
-		int pivot = data[h];
-		int j = h - 1;
-		// for(int i=0;i<=j;i++)
-		int i = 0;
-		while (i <= j) {
-			if (data[i] > pivot) {
-				int temp = data[i];
-				data[i] = data[j];
-				data[j] = temp;
-				j--;
-			} else {
-				i++;
-			}
-
+	
+	
+	public static void quickSort(int[] arr,int left,int right) {
+		
+		if(left>=right) {
+			return ;
 		}
-		data[h] = data[j + 1];
-		data[j + 1] = pivot;
-
-		return j + 1;
-
+		
+		int i =left,j=right;
+		while(i<j) {
+		
+		
+		//consider left as pivot element
+		//compare each ith element with pivot element
+		
+		while(i<=right && arr[i] <=arr[left]) 
+			// if it is greater then increment the value by 1
+			i++;
+		
+		
+		//compare the jth element with pivot element
+		while(arr[j]>arr[left]) 
+			//if the right is less than pivot element then decrease the jth value by 1 
+			j--;
+		
+		
+		//i and j swaps 
+		
+		if(i<j) 
+			swap(arr,i,j);
+		}	
+		
+		swap(arr,j,left);
+		//apply sort to left partition
+		quickSort(arr,left,j-1);
+		//apply sort to left partition
+		quickSort(arr,j+1,right);
+		
+		
+		
+			
 	}
+	
 
-	public static void QuickSort(int[] data, int l, int h) {
-		if (l < h) {
-			int p = partition(data, l, h);
-			if (p != -1) {
-				QuickSort(data, l, p - 1);
-				QuickSort(data, p + 1, h);
-			}
-		}
-
+	public static void main(String args[]) 
+	{
+		int arr[]= {10,21,32,14,12,36};
+		
+		
+		
+		System.out.println("Before: "+Arrays.toString(arr));
+		quickSort(arr,0,arr.length-1);
+		System.out.println("After: "+Arrays.toString(arr));	
+		
+		
 	}
-
-	private static void printData(int[] data) {
-		for (int i = 0; i < data.length; i++)
-			System.out.print("  " + data[i]);
-	}
-
 }
